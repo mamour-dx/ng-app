@@ -10,9 +10,6 @@ import { HeaderComponent } from "./components/header/header.component";
   template: `
     <h1>Welcome to my Angular application!</h1>
     <app-header></app-header> 
-    <main></main>
- 
-
     <router-outlet />
   `,
   styles: [`
