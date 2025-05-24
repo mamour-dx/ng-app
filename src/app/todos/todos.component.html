@@ -4,8 +4,18 @@
     <p>Loading...</p>
 }
 
+<form>
+<label>Filter Todos</label>
+<input
+    name = "searchText"
+    [(ngModel)]="searchText" 
+    type="text" 
+    placeholder="Search Todos..."
+>
+</form>
+
 <ul class="todos">
- @for (todo of todoItems(); track todo.id) {
+ @for (todo of todoItems() | filterTodos : searchText(); track todo.id) {
     <app-todo-item 
     [todo]="todo"
     (todoToggled)="updateTodoItem(todo)"
