@@ -1,11 +1,13 @@
+import { NgIf } from '@angular/common';
 import { Todo } from './../models/todo.type';
 import { TodosService } from './../services/todos.service';
 import { Component, inject, OnInit, signal} from '@angular/core';
 import { catchError } from 'rxjs';
+import { TodoItemComponent } from '../components/todo-item/todo-item.component';
 
 @Component({
   selector: 'app-todos',
-  imports: [],
+  imports: [TodoItemComponent],
   templateUrl: './todos.component.html',
   styleUrl: './todos.component.scss'
 })
@@ -23,9 +25,25 @@ export class TodosComponent implements OnInit {
         throw err
       })
     )
-    // this is critical
+    // this is critical *
     .subscribe((todos: Todo[]) => {
       this.todoItems.set(todos);
     })
+  }
+  test() {
+    console.log("OK")
+  }
+  updateTodoItem(todoItems: Todo) {
+    this.todoItems.update((todos) => {
+      return todos.map((todo) => {
+        if (todo.id === todoItems.id) {
+          return {
+            ...todo,
+            completed: !todoItems.completed
+          };
+        }
+        return todo;
+      });
+    });
   }
 }
