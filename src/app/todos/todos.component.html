@@ -1,9 +1,10 @@
-<ul>
-    <li>pull the code</li>
-    <li>install dependencies</li>
-    <li>run the app</li>
-    <li>open the browser</li>
-    <li>open the dev tools</li>
-    <li>open the console</li>
-    <li>open the network tab</li>
+<h3>todos list</h3>
+<ul class="todos">
+@for (todo of todoItems(); track todo.id) {
+    <li class="todoItems">
+        <input type="checkbox" [value]="todo.completed"/>
+        <label>{{ todo.title }}</label>
+    </li>
+}
+
 </ul>
